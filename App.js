@@ -82,41 +82,6 @@ export default function App() {
     </NavigationContainer>
 
   )
-
-
-
-
-
-  const [fontsLoaded] = useFonts({
-    "Poppins-Bold": require("./assets/fonts/Poppins-Bold.ttf"),
-    "Poppins-Medium": require("./assets/fonts/Poppins-Medium.ttf"),
-    "Poppins-Regular": require("./assets/fonts/Poppins-Regular.ttf"),
-    "Poppins-SemiBold": require("./assets/fonts/Poppins-SemiBold.ttf"),
-  })
-
-  if (!fontsLoaded)
-    return null;
-
-  return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground source={require("./assets/background.png")} resizeMode='cover' style={styles.wrapper}>
-        <Image source={require("./assets/cup.png")} ></Image>
-        <View style={{ marginTop: 40, marginBottom: 40, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ fontFamily: "Poppins-Regular", color: "#FFF", fontWeight: '400', fontSize: 32 }}>Welcome to</Text>
-          <Text style={{ fontFamily: "Poppins-Medium", color: "#E65738", fontWeight: '400', fontSize: 62 }}>Cavosh</Text>
-        </View>
-
-        <TouchableHighlight
-          style={
-            { backgroundColor: "#293441", alignItems: 'center', width: "50%", justifyContent: 'center', height: 40, borderRadius: 10 }}
-          onPress={() => console.log('pressed')}
-        >
-          <Text style={{ fontFamily: "Poppins-Medium", color: "#fff", fontSize: 18 }}>Get Started</Text>
-        </TouchableHighlight >
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </View>
-  );
 }
 
 const styles = StyleSheet.create({
