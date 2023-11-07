@@ -18,14 +18,14 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/cup.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
       },
       "softwareKeyboardLayoutMode": "pan",
       "package": "com.kwabenacross.CoffeeShopApp"
     },
     "web": {
-      "favicon": "./assets/cup.png"
+      "favicon": "./assets/icon.png"
     },
     "runtimeVersion": {
       "policy": "sdkVersion"

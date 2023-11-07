@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./Home";
@@ -8,9 +8,12 @@ import Favorite from "../components/Favorite";
 import MyCart from "./MyCart";
 import Menu from "./Menu";
 import Profile from "./Profile";
+import CartCounterIndicator from "../components/CartCounterIndicator";
+import { CartProvider } from "../providers/cartContext";
 
 const Tab = createBottomTabNavigator();
 function AppMenu() {
+
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -80,7 +83,9 @@ function AppMenu() {
                     headerShown: false,
                     tabBarIcon: ({ color, size }) => (
                         <View>
+
                             <Feather name="shopping-cart" color={color} size={size} />
+                            <CartCounterIndicator cartCount={0}></CartCounterIndicator>
                         </View>
                     ),
                 }}
@@ -92,9 +97,11 @@ function AppMenu() {
 
 export default function Index() {
     return (
-        <NavigationContainer independent={true}>
-            <AppMenu />
-        </NavigationContainer>
+        <CartProvider>
+            <NavigationContainer independent={true}>
+                <AppMenu />
+            </NavigationContainer>
+        </CartProvider>
     );
 };
 

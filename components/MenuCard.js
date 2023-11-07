@@ -1,8 +1,11 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Entypo, Ionicons } from "@expo/vector-icons";
+import { useCart } from "../providers/cartContext";
+
 
 const MenuCard = (props) => {
+    const { cart, addItemToCart, removeItemFromCart } = useCart();
     return (
         <View style={{
             width: '45%',
@@ -48,7 +51,7 @@ const MenuCard = (props) => {
                     alignItems: "center",
                     color: "#E65738"
                 }}>$</Text>{props.price}</Text>
-                <TouchableOpacity style={{
+                <TouchableOpacity onPress={() => addItemToCart(JSON.stringify(props.item))} style={{
                     backgroundColor: "#E65738",
                     width: 50,
                     height: 36,
@@ -64,6 +67,16 @@ const MenuCard = (props) => {
                     <Entypo name="plus" size={22} color="white" style={{
                         position: "absolute"
                     }} ></Entypo>
+                    {/* {
+                        (addToCart) ?
+                            < Entypo name="plus" size={22} color="white" style={{
+                                position: "absolute"
+                            }} ></Entypo> :
+                            <Entypo name="minus" size={22} color="white" style={{
+                                position: "absolute"
+                            }} ></Entypo>
+                    } */}
+
                 </TouchableOpacity>
             </View>
         </View >

@@ -100,6 +100,7 @@ export default function Home() {
                                         name={item.name}
                                         image={item.img}
                                         price={item.price}
+                                        item={item}
                                     ></NewInCard>
                                 ))
                             }
@@ -129,6 +130,7 @@ export default function Home() {
                                         price={item.price}
                                         size={item.size}
                                         milk={item.milk}
+                                        item={item}
                                     ></FrequentlyOrderedCard>
                                 ))
                             }

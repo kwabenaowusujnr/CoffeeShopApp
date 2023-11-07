@@ -143,6 +143,7 @@ export default function Menu() {
                                     price={item.price}
                                     size={item.size}
                                     milk={item.milk}
+                                    item={item}
                                 ></MenuCard>
                             ))
                         }

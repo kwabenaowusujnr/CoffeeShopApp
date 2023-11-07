@@ -58,6 +58,7 @@ export default function Favorite() {
                                     price={item.price}
                                     size={item.size}
                                     milk={item.milk}
+                                    item={item}
                                 ></FrequentlyOrderedCard>
                             ))
                         }

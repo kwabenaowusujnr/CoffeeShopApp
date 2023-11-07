@@ -1,8 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
+import { useCart } from "../providers/cartContext";
 
 const NewInCard = (props) => {
+    const { cart, addItemToCart, removeItemFromCart } = useCart();
     return (
         <View style={{
             width: 140,
@@ -39,7 +41,8 @@ const NewInCard = (props) => {
                     alignItems: "center",
                     color: "#E65738"
                 }}>$</Text>{props.price}</Text>
-                <TouchableOpacity style={{
+
+                <TouchableOpacity onPress={() => addItemToCart(JSON.stringify(props.item))} style={{
                     backgroundColor: "#E65738",
                     width: 50,
                     height: 36,
