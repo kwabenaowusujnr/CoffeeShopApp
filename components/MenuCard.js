@@ -1,11 +1,16 @@
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Pressable } from "react-native";
 import React, { useState } from "react";
 import { Entypo, Ionicons } from "@expo/vector-icons";
-import { useCart } from "../providers/cartContext";
-
+import { useCoffeeShop } from "../providers/CoffeeShopContext";
+import { useNavigation } from '@react-navigation/native';
 
 const MenuCard = (props) => {
-    const { cart, addItemToCart, removeItemFromCart } = useCart();
+    const { cart, addItemToCart, removeItemFromCart, storeData, addItemToFavorite } = useCoffeeShop();
+
+    const addToFav = (item) => {
+        storeData(item, 'cartData');
+    }
+    const navigation = useNavigation();
     return (
         <View style={{
             width: '45%',
@@ -18,12 +23,13 @@ const MenuCard = (props) => {
             shadowOffset: { height: 3, width: 3 },
             shadowOpacity: 0.5,
             shadowRadius: 0.5,
-            marginVertical: 10,
-
+            marginVertical: 10
         }}>
             <View>
-                <Image source={props.image} style={{ width: "100%", height: 160, borderRadius: 20 }}></Image>
-                <TouchableOpacity>
+                <Pressable onPress={() => { navigation.navigate("ProductDetails", { item: JSON.stringify(props.item) }); console.log(props.item) }}>
+                    <Image source={props.image} style={{ width: "100%", height: 160, borderRadius: 20, backgroundColor: "#E6EBEF" }}></Image>
+                </Pressable>
+                <TouchableOpacity onPress={() => addItemToFavorite(JSON.stringify(props.item))}>
                     <Ionicons name="heart-circle-sharp" size={40} color="#E65738" style={{
                         position: "absolute", bottom: -5, right: -5
                     }} />

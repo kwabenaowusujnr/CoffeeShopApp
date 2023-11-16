@@ -11,7 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.kwabenacross.CoffeeShopApp"
@@ -29,6 +31,14 @@
     },
     "runtimeVersion": {
       "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "be4c443d-aaa9-4f67-8b8f-ec1583107abc"
+      }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/be4c443d-aaa9-4f67-8b8f-ec1583107abc"
     }
   }
 }

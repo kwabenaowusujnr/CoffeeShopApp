@@ -1,12 +1,17 @@
-import { View, Text, StyleSheet, ImageBackground, ScrollView } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, ImageBackground, ScrollView, TouchableOpacity } from "react-native";
+import React, { useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import FrequentlyOrderedCard from "./FrequentlyOrderedCard";
 import CoffeeData from "../data.js/CoffeeData"
+import { useCoffeeShop } from "../providers/CoffeeShopContext";
+import EmptyAni from "./EmptyAni";
+
 
 export default function Favorite() {
-    const FavoriteCoffeeData = CoffeeData.coffeeTypes.slice(0, 4);
+    // const FavoriteCoffeeData = CoffeeData.coffeeTypes.slice(0, 4);
+    const { favorites, setFavorites, removeItemFromFavorite } = useCoffeeShop();
+
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }} >
@@ -29,50 +34,70 @@ export default function Favorite() {
 
                     </ImageBackground>
                 </View>
+                {
+                    (favorites.length > 0) ?
+                        <View style={{
+                            margin: 20
+                        }} >
+                            <Text style={{
+                                fontFamily: "Poppins-SemiBold",
+                                marginVertical: 5,
+                                textAlign: "right",
+                                fontSize: 14,
+                                left: 0,
+                                color: "#34536A"
+                            }}>{favorites.length} items</Text>
 
-                <View style={{
-                    margin: 20
-                }} >
-                    <Text style={{
-                        fontFamily: "Poppins-SemiBold",
-                        marginVertical: 5,
-                        textAlign: "right",
-                        fontSize: 14,
-                        left: 0,
-                        color: "#34536A"
-                    }}>{FavoriteCoffeeData.length} items</Text>
+                            <ScrollView
+                                style={{
+                                    paddingBottom: 100,
+                                    height: "70%"
+                                }}
+                                showsVerticalScrollIndicator={false}
+                            >
+                                {
+                                    favorites.map((item, index) => (
+                                        <View
+                                            key={index}
+                                            style={{
+                                                flexDirection: "row",
+                                                alignItems: "center"
+                                            }}>
+                                            <FrequentlyOrderedCard
+                                                name={item.name}
+                                                image={item.img}
+                                                price={item.price}
+                                                size={item.size}
+                                                milk={item.milk}
+                                                item={item}
+                                            ></FrequentlyOrderedCard>
+                                            <TouchableOpacity onPress={() => removeItemFromFavorite(JSON.stringify(item))}>
+                                                <MaterialIcons name="delete-forever" size={24} color="#FF0000" />
+                                            </TouchableOpacity>
+                                        </View>
+                                    ))
+                                }
+                            </ScrollView>
 
-                    <ScrollView
-                        style={{
-                            paddingBottom: 100,
-                            height: "70%"
-                        }}
-                        showsVerticalScrollIndicator={false}
-                    >
-                        {
-                            FavoriteCoffeeData.map((item, index) => (
-                                <FrequentlyOrderedCard
-                                    key={index}
-                                    name={item.name}
-                                    image={item.img}
-                                    price={item.price}
-                                    size={item.size}
-                                    milk={item.milk}
-                                    item={item}
-                                ></FrequentlyOrderedCard>
-                            ))
-                        }
-                    </ScrollView>
+                            {/* <Text style={{
+                                fontFamily: "Poppins-SemiBold",
+                                marginVertical: 5,
+                                textAlign: "right",
+                                fontSize: 16,
+                                color: "#E65738"
+                            }}>Edit</Text> */}
 
-                    <Text style={{
-                        fontFamily: "Poppins-SemiBold",
-                        marginVertical: 5,
-                        textAlign: "right",
-                        fontSize: 16,
-                        color: "#E65738"
-                    }}>Edit</Text>
-
-                </View>
+                        </View>
+                        :
+                        <View style={{
+                            display: "flex",
+                            flex: 1,
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}>
+                            <EmptyAni></EmptyAni>
+                        </View>
+                }
             </View>
         </SafeAreaView>
     );

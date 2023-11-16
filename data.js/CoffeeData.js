@@ -43,7 +43,7 @@ const coffeeTypes = [
         size: 'Medium',
         type: 'Flavored',
         milk: 'Whole Milk',
-        img: require('../assets/Mocha.png'),
+        img: require('../assets/Mocha_trans.png'),
     },
     {
         id: 5,
@@ -87,7 +87,7 @@ const coffeeTypes = [
         size: 'Large',
         type: 'Iced',
         milk: 'No Milk',
-        img: require('../assets/flatwhite.png'),
+        img: require('../assets/flatwhite_trans.png'),
     },
     {
         id: 9,

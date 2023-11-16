@@ -8,7 +8,7 @@ import MenuCard from "../components/MenuCard";
 import { Image } from "react-native";
 import CategoryPill from "../components/CategoryPill";
 
-export default function Menu() {
+export default function Menu({ navigation }) {
     const _CoffeeData = CoffeeData.coffeeTypes;
     const _Category = [
         {
@@ -109,6 +109,7 @@ export default function Menu() {
                                     imageSelected={item.imgSelected}
                                     setCatgoryType={setCatgoryType}
                                     catgoryType={catType}
+
                                 ></CategoryPill>
                             ))
 
@@ -144,6 +145,7 @@ export default function Menu() {
                                     size={item.size}
                                     milk={item.milk}
                                     item={item}
+                                    navigation={navigation}
                                 ></MenuCard>
                             ))
                         }

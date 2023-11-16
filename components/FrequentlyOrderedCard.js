@@ -1,14 +1,14 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { useCart } from "../providers/cartContext";
+import { useCoffeeShop } from "../providers/CoffeeShopContext";
 
 const FrequentlyOrderedCard = (props) => {
-    const { cart, addItemToCart, removeItemFromCart } = useCart();
+    const { cart, addItemToCart, removeItemFromCart } = useCoffeeShop();
     const selectedItem = props.item;
     return (
         <View style={{
-            width: "100%",
+            width: "90%",
             height: 100,
             backgroundColor: "#ffffff",
             flexDirection: "row",

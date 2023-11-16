@@ -9,9 +9,13 @@ import MyCart from "./MyCart";
 import Menu from "./Menu";
 import Profile from "./Profile";
 import CartCounterIndicator from "../components/CartCounterIndicator";
-import { CartProvider } from "../providers/cartContext";
+import { CoffeeShopProvider } from "../providers/CoffeeShopContext";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ProductIndex from "./ProductDetails/ProductIndex";
+import ProductDetails from "./ProductDetails/ProductDetails";
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 function AppMenu() {
 
     return (
@@ -43,8 +47,7 @@ function AppMenu() {
                 }}
             />
             <Tab.Screen
-                name="Menu"
-                component={Menu}
+                name="ProductCenter"
                 options={{
                     tabBarLabel: 'Menu',
                     headerShown: false,
@@ -52,7 +55,21 @@ function AppMenu() {
                         <Feather name="book-open" color={color} size={size} />
                     ),
                 }}
-            />
+            >
+                {() => (
+                    <Stack.Navigator initialRouteName="Menu">
+                        <Stack.Screen name="Menu" component={Menu} options={{ headerShown: false }} />
+                        <Stack.Screen name="ProductDetails"
+                            component={ProductDetails}
+                            options={{ headerShown: false, tabBarVisible: false }}
+                            screenOptions={{
+                                presentation: 'modal'
+                            }} />
+
+                        {/* Add other screens here */}
+                    </Stack.Navigator>
+                )}
+            </Tab.Screen>
             <Tab.Screen
                 name="Favorites"
                 component={Favorite}
@@ -97,11 +114,11 @@ function AppMenu() {
 
 export default function Index() {
     return (
-        <CartProvider>
+        <CoffeeShopProvider>
             <NavigationContainer independent={true}>
                 <AppMenu />
             </NavigationContainer>
-        </CartProvider>
+        </CoffeeShopProvider>
     );
 };
 

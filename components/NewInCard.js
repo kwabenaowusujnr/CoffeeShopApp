@@ -1,10 +1,11 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { useCart } from "../providers/cartContext";
+import { useCoffeeShop } from "../providers/CoffeeShopContext";
+
 
 const NewInCard = (props) => {
-    const { cart, addItemToCart, removeItemFromCart } = useCart();
+    const { cart, addItemToCart, removeItemFromCart } = useCoffeeShop();
     return (
         <View style={{
             width: 140,
